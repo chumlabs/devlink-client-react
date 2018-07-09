@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom';
 
 // utilities
 import pick from 'lodash/pick';
+import isEmpty from 'lodash/isEmpty';
 
 // reactstrap
 import { Container, Row, Col, Button } from 'reactstrap';
 
 // components
 import TextAreaGroup from '../form/TextAreaGroup';
-import TextInputGroup from '../form/TextInputGroup';
+import FormInputGroup from '../form/FormInputGroup';
 
 // action creators
 import { addResource } from '../../actions/profileActions';
@@ -73,7 +74,7 @@ export class AddResource extends Component {
       <div className="add-project">
         <Container>
           <Row>
-            <Col md="8" className="m-auto">
+            <Col md="10" className="m-auto">
               <Button tag={Link} to={'/dashboard'} color="danger" className="mb-4">
                 Back to Dashboard
               </Button>
@@ -84,8 +85,9 @@ export class AddResource extends Component {
               </p>
               <small className="d-block pb-3">* required</small>
               <form onSubmit={this.onSubmit}>
-                <TextInputGroup
-                  type="text"
+                <FormInputGroup
+                  label="Resource Name"
+                  id="name"
                   name="name"
                   value={this.state.name}
                   placeholder="* Name"
@@ -94,25 +96,29 @@ export class AddResource extends Component {
                   error={errors.name}
                   required={true}
                 />
-                <TextInputGroup
-                  type="text"
+                <FormInputGroup
+                  label="Topic"
+                  id="topic"
                   name="topic"
                   value={this.state.topic}
                   placeholder="Topic"
-                  info="The topic of your resource"
+                  info="The main topic of your resource"
                   onChange={this.onChange}
                   error={errors.topic}
                 />
                 <TextAreaGroup
+                  label="Description"
+                  id="description"
                   name="description"
                   value={this.state.description}
                   placeholder="* Description"
-                  info="A brief description of the project"
+                  info="A brief description of the resource"
                   onChange={this.onChange}
                   error={errors.description}
                 />
-                <TextInputGroup
-                  type="text"
+                <FormInputGroup
+                  label="Resource URL"
+                  id="name"
                   name="url"
                   value={this.state.url}
                   placeholder="* URL"
@@ -121,8 +127,9 @@ export class AddResource extends Component {
                   error={errors.url}
                   required={true}
                 />
-                <h6>Resource Date</h6>
-                <TextInputGroup
+                <FormInputGroup
+                  label="Resource Date"
+                  id="date"
                   type="date"
                   name="date"
                   value={this.state.date}
@@ -130,20 +137,29 @@ export class AddResource extends Component {
                   onChange={this.onChange}
                   error={errors.date}
                 />
-                <TextInputGroup
-                  type="text"
+                <FormInputGroup
+                  label="Resource Keywords"
+                  id="keywords"
                   name="keywords"
                   value={this.state.keywords}
                   placeholder="keywords"
-                  info="Keywords that may help people find your project (separate each word with a comma: react, state management, ...)"
+                  info="Keywords that may help people find this resource (separate each word with a comma: react, state management, ...)"
                   onChange={this.onChange}
                   error={errors.keywords}
                 />
-                <input
+                <Button
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
-                />
+                  color="info"
+                  className="btn-block mt-4"
+                >
+                  Submit
+                </Button>
+                {!isEmpty(errors) && (
+                  <div className="text-danger mt-3">
+                    An error has occurred, please check your entries.
+                  </div>
+                )}
               </form>
             </Col>
           </Row>

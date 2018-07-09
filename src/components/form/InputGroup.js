@@ -1,14 +1,16 @@
 import React from 'react';
-import { func, bool, string } from 'prop-types';
+import { object, func, bool, string, oneOfType } from 'prop-types';
 import classnames from 'classnames';
 
-import { FormGroup } from 'reactstrap';
+// reactstrap
+// import { InputGroupText } from 'reactstrap';
 
 // proptypes
-TextInputGroup.propTypes = {
+InputGroup.propTypes = {
   type: string.isRequired,
   name: string.isRequired,
   value: string.isRequired,
+  prepend: oneOfType([string, object]),
   label: string,
   id: string,
   placeholder: string,
@@ -16,55 +18,56 @@ TextInputGroup.propTypes = {
   required: bool,
   info: string,
   error: string,
-  displayError: bool,
-  disabled: bool
+  displayError: bool
 };
 
-TextInputGroup.defaultProps = {
+InputGroup.defaultProps = {
   type: 'text',
   required: false,
-  displayError: true,
-  disabled: false
+  displayError: true
 };
 
-function TextInputGroup({
+function InputGroup({
   type,
   name,
   value,
-  id,
+  prepend,
   label,
+  id,
   placeholder,
   onChange,
   required,
   info,
   error,
-  displayError,
-  disabled
+  displayError
 }) {
   return (
     <div className="mb-4">
       {label && (
-        <label className="lead" for={id}>
+        <label className="lead" htmlFor={id}>
           {label}
         </label>
       )}
-      <FormGroup>
+      <div className="input-group">
+        {prepend && (
+          <div className="input-group-prepend">
+            <span className="input-group-text">{prepend}</span>
+          </div>
+        )}
         <input
           type={type}
           className={classnames('form-control form-control-lg', { 'is-invalid': error })}
           name={name}
           value={value}
-          id={id}
           placeholder={placeholder}
           onChange={onChange}
           required={required}
-          disabled={disabled}
         />
         {displayError && error && <div className="invalid-feedback">{error}</div>}
-      </FormGroup>
-      {info && <small className="form-text text-muted">{info}</small>}
+      </div>
+      {info && <small className="form-text text-muted display-block">{info}</small>}
     </div>
   );
 }
 
-export default TextInputGroup;
+export default InputGroup;

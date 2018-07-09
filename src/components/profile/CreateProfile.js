@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { object, func } from 'prop-types';
 import { connect } from 'react-redux';
+
+// utilities
 import pick from 'lodash/pick';
+import isEmpty from 'lodash/isEmpty';
 
 // reactstrap
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 
 // components
-import InputGroup from '../form/InputGroup';
+import SocialInputGroup from '../form/SocialInputGroup';
 import SelectListGroup from '../form/SelectListGroup';
 import TextAreaGroup from '../form/TextAreaGroup';
-import TextInputGroup from '../form/TextInputGroup';
+import FormInputGroup from '../form/FormInputGroup';
 // import Spinner from '../transitions/Spinner';
 
 // action creators
@@ -93,7 +96,7 @@ export class CreateProfile extends Component {
   render() {
     const { errors, displaySocInputs } = this.state;
 
-    //select list options for focus
+    // select list options for focus
     const options = [
       { label: '* Choose a Job Focus or Role', value: '', selected: 'selected' },
       { label: 'Full Stack Developer', value: 'Full Stack Developer' },
@@ -108,8 +111,7 @@ export class CreateProfile extends Component {
 
     const socialInputs = (
       <div>
-        <InputGroup
-          type="text"
+        <SocialInputGroup
           name="github"
           value={this.state.github}
           prepend={<i className="fab fa-github" />}
@@ -117,8 +119,7 @@ export class CreateProfile extends Component {
           onChange={this.onChange}
           error={errors.github}
         />
-        <InputGroup
-          type="text"
+        <SocialInputGroup
           name="youtube"
           value={this.state.youtube}
           prepend={<i className="fab fa-youtube" />}
@@ -126,8 +127,7 @@ export class CreateProfile extends Component {
           onChange={this.onChange}
           error={errors.youtube}
         />
-        <InputGroup
-          type="text"
+        <SocialInputGroup
           name="twitter"
           value={this.state.twitter}
           prepend={<i className="fab fa-twitter" />}
@@ -135,8 +135,7 @@ export class CreateProfile extends Component {
           onChange={this.onChange}
           error={errors.twitter}
         />
-        <InputGroup
-          type="text"
+        <SocialInputGroup
           name="linkedin"
           value={this.state.linkedin}
           prepend={<i className="fab fa-linkedin" />}
@@ -151,13 +150,13 @@ export class CreateProfile extends Component {
       <div className="create-profile">
         <Container>
           <Row>
-            <Col className="m-auto">
+            <Col md="10" className="m-auto">
               <h1 className="display-4 text-center">Create Your Profile</h1>
-              <p className="lead text-center" />
-              <small className="d-block pb-3">* required</small>
+              <small className="d-block pb-3">(* required)</small>
               <form onSubmit={this.onSubmit}>
-                <TextInputGroup
-                  type="text"
+                <FormInputGroup
+                  label="Handle"
+                  id="handle"
                   name="handle"
                   value={this.state.handle}
                   placeholder="* Profile Handle"
@@ -167,6 +166,8 @@ export class CreateProfile extends Component {
                   required={true}
                 />
                 <SelectListGroup
+                  label="Job Title"
+                  id="focus"
                   name="focus"
                   value={this.state.focus}
                   options={options}
@@ -175,8 +176,9 @@ export class CreateProfile extends Component {
                   error={errors.focus}
                   required={true}
                 />
-                <TextInputGroup
-                  type="text"
+                <FormInputGroup
+                  label="Employer"
+                  id="employer"
                   name="employer"
                   value={this.state.employer}
                   placeholder="Current Employer"
@@ -184,17 +186,19 @@ export class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.employer}
                 />
-                <TextInputGroup
-                  type="text"
+                <FormInputGroup
+                  label="Website"
+                  id="website"
                   name="website"
                   value={this.state.website}
-                  placeholder="Website"
+                  placeholder="http://..."
                   info="Personal or professional website"
                   onChange={this.onChange}
                   error={errors.website}
                 />
-                <TextInputGroup
-                  type="text"
+                <FormInputGroup
+                  label="Location"
+                  id="location"
                   name="location"
                   value={this.state.location}
                   placeholder="Location"
@@ -202,8 +206,9 @@ export class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.location}
                 />
-                <TextInputGroup
-                  type="text"
+                <FormInputGroup
+                  label="Skills"
+                  id="skills"
                   name="skills"
                   value={this.state.skills}
                   placeholder="* Skills"
@@ -213,6 +218,8 @@ export class CreateProfile extends Component {
                   required={true}
                 />
                 <TextAreaGroup
+                  label="Bio"
+                  id="bio"
                   name="bio"
                   value={this.state.bio}
                   placeholder="Brief Bio"
@@ -221,20 +228,24 @@ export class CreateProfile extends Component {
                   error={errors.bio}
                 />
                 <div className="mb-3">
-                  <button
-                    type="button"
-                    className="btn btn-light"
-                    onClick={this.onSocialClick}
-                  >
+                  <Button type="button" color="light" onClick={this.onSocialClick}>
                     Add Social Network Links
-                  </button>
+                  </Button>
                 </div>
                 {displaySocInputs && socialInputs}
-                <input
+                <Button
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
-                />
+                  color="info"
+                  className="btn-block mt-4"
+                >
+                  Submit
+                </Button>
+                {!isEmpty(errors) && (
+                  <div className="text-danger mt-3">
+                    An error has occurred, please check your entries.
+                  </div>
+                )}
               </form>
             </Col>
           </Row>

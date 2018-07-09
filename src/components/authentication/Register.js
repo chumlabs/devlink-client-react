@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { Container, Row, Col, Button } from 'reactstrap';
 
 // components
-import TextInputGroup from '../form/TextInputGroup';
+import FormInputGroup from '../form/FormInputGroup';
 
 // action creators
 import { registerUser } from '../../actions/authActions';
@@ -85,7 +85,7 @@ export class Register extends Component {
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">Create your DevLink account</p>
               <form onSubmit={this.onSubmit}>
-                <TextInputGroup
+                <FormInputGroup
                   type="text"
                   name="name"
                   value={this.state.name}
@@ -94,7 +94,7 @@ export class Register extends Component {
                   required={true}
                   error={errors.name}
                 />
-                <TextInputGroup
+                <FormInputGroup
                   type="email"
                   name="email"
                   value={this.state.email}
@@ -105,7 +105,7 @@ export class Register extends Component {
                   email"
                   error={errors.email}
                 />
-                <TextInputGroup
+                <FormInputGroup
                   type="password"
                   name="password"
                   value={this.state.password}
@@ -115,7 +115,7 @@ export class Register extends Component {
                   info="pasword must be at least 6 characters long"
                   error={errors.password}
                 />
-                <TextInputGroup
+                <FormInputGroup
                   type="password"
                   name="password2"
                   value={this.state.password2}

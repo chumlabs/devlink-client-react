@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Container, Row, Col, Button } from 'reactstrap';
 
 // components
-import TextInputGroup from '../form/TextInputGroup';
+import FormInputGroup from '../form/FormInputGroup';
 
 // action creators
 import { loginUser } from '../../actions/authActions';
@@ -77,7 +77,7 @@ export class Login extends Component {
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">Sign in to your DevLink account</p>
               <form onSubmit={this.onSubmit}>
-                <TextInputGroup
+                <FormInputGroup
                   type="email"
                   name="email"
                   value={this.state.email}
@@ -87,7 +87,7 @@ export class Login extends Component {
                   displayError={false}
                   error={errors.message}
                 />
-                <TextInputGroup
+                <FormInputGroup
                   type="password"
                   name="password"
                   value={this.state.password}

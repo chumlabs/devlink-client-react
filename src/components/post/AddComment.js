@@ -3,7 +3,7 @@ import { object, string, func } from 'prop-types';
 import { connect } from 'react-redux';
 
 // reactstrap
-import { Card, CardBody, FormGroup, CardHeader } from 'reactstrap';
+import { Card, CardBody, FormGroup, CardHeader, Button } from 'reactstrap';
 
 // components
 import TextAreaGroup from '../form/TextAreaGroup';
@@ -81,9 +81,9 @@ export class AddComment extends Component {
                   required={true}
                 />
               </FormGroup>
-              <button type="submit" className="btn btn-info" disabled={!this.state.text}>
+              <Button type="submit" color="info" disabled={!this.state.text}>
                 Submit
-              </button>
+              </Button>
             </form>
           </CardBody>
         </Card>
