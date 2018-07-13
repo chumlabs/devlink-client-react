@@ -67,7 +67,7 @@ export class AddComment extends Component {
       <div className="post-form mb-3">
         <Card>
           <CardHeader className="d-flex align-items-center">
-            <h4 className="mt-1">Comment</h4>
+            <h4 className="mt-1">Add a Comment</h4>
           </CardHeader>
           <CardBody>
             <form onSubmit={this.onSubmit}>
@@ -82,7 +82,7 @@ export class AddComment extends Component {
                 />
               </FormGroup>
               <Button type="submit" color="info" disabled={!this.state.text}>
-                Submit
+                Comment
               </Button>
             </form>
           </CardBody>

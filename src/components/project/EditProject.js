@@ -232,7 +232,7 @@ export class EditProject extends Component {
                   color="info"
                   className="btn-block mt-4"
                 >
-                  Submit
+                  Submit Changes
                 </Button>
                 {!isEmpty(errors) && (
                   <div className="text-danger mt-3">

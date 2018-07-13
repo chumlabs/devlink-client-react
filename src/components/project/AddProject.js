@@ -199,7 +199,7 @@ export class AddProject extends Component {
                   color="info"
                   className="btn-block mt-4"
                 >
-                  Submit
+                  Add Project
                 </Button>
                 {!isEmpty(errors) && (
                   <div className="text-danger mt-3">

@@ -153,7 +153,7 @@ export class AddResource extends Component {
                   color="info"
                   className="btn-block mt-4"
                 >
-                  Submit
+                  Add Resource
                 </Button>
                 {!isEmpty(errors) && (
                   <div className="text-danger mt-3">

@@ -99,7 +99,7 @@ export class Login extends Component {
 
                 {}
                 <Button color="info" block className="mt-4">
-                  Submit
+                  Login
                 </Button>
               </form>
             </Col>

@@ -83,7 +83,7 @@ export class AddPost extends Component {
                 />
               </FormGroup>
               <Button color="info" type="submit" disabled={!this.state.text}>
-                Submit
+                Post
               </Button>
             </form>
           </CardBody>

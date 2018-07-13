@@ -125,7 +125,7 @@ export class Register extends Component {
                   error={errors.password2}
                 />
                 <Button color="info" block className="mt-4">
-                  Submit
+                  Sign Up
                 </Button>
               </form>
             </Col>
